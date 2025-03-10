@@ -59,3 +59,4 @@ If you are hosting frontend code somewhere without using DFX, you may need to ma
 - Write your own `createActor` constructor
 # anon_board
 # anon_board
+# anon_board
