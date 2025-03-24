@@ -1,62 +1,74 @@
-# `anon_board`
+# AnonBoard（アノンボード）
 
-Welcome to your new `anon_board` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+## 📌 サービスコンセプト
+**AnonBoard（アノンボード）** は、Internet Computer Protocol（ICP）を活用して構築した、完全匿名かつ検閲が不可能な分散型掲示板です。従来の掲示板とは異なり、運営者による削除や改ざんが技術的に不可能なため、言論の自由と真正性を保証します。
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+---
 
-To learn more before you start working with `anon_board`, see the following documentation available online:
+## 🎯 利用ユーザ想定（ターゲット）
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+- 言論の自由を求める一般ユーザー
+- 政治的・社会的議論を検閲の恐れなく行いたい人々
+- ジャーナリストや研究者など、改ざんできない情報記録が必要な人々
+- Web3コミュニティやオープンソースプロジェクトの開発者
 
-If you want to start working on your project right away, you might want to try the following commands:
+---
+
+## 🌟 メリット・特徴
+
+- **完全匿名投稿**：ユーザー登録不要、ウォレットや個人情報が不要なため、完全な匿名性を提供。
+- **改ざん・削除不可**：投稿はICPブロックチェーン上に記録され、管理者でも削除が不可能。
+- **検閲耐性**：Canister（スマートコントラクト）が分散管理され、サービス停止や検閲のリスクが極めて低い。
+- **低コスト運用**：Ethereum等と比べて投稿ごとのコストがほぼゼロ。
+
+---
+
+## 🛠 ICPの技術活用箇所
+
+- **Canisters（スマートコントラクト）**：投稿データを完全に分散保存・管理。運営者による投稿削除や改ざんを防ぐ。
+- **Internet Identity（オプション）**：今後、本人認証付き投稿をオプションとして実装可能。
+- **ICP分散台帳**：投稿のデータをICP上で永久的に保存し、真正性と透明性を保証。
+
+---
+
+## 🚀 なぜICPの仕組みを活用したか（ICPの優位性）
+
+- **圧倒的に低コスト**：ICPは投稿の保存コストが非常に低く、持続可能な運営が可能。
+- **削除・改ざん不可能**：ICPは分散型管理のため、運営者による削除や改ざんが不可能で、検閲耐性が極めて高い。
+- **リアルタイムな動的データ管理**：ICPなら動的データをリアルタイムに管理・更新でき、掲示板のような動的コンテンツに最適。
+- **中央管理者不要**：中央管理者が不要なため、自由な言論空間を安全に提供できる。
+
+---
+
+## 📌 現在の開発進捗と今後の展望
+
+現在（2025年3月時点）は以下の段階まで完成しています。
+
+- ICP Canisters上での匿名投稿・取得機能の実装完了
+- フロントエンド（SvelteKit）の基本UIを実装中
+- 本番環境へのデプロイ準備中
+
+今後の展望として、以下を考えています。
+- カテゴリー・タグ機能の追加
+- 投稿へのリアクションやコメント機能
+- Internet Identityを使ったオプションの本人認証投稿機能
+- 他チェーン（Ethereum等）とのマルチチェーン統合機能
+
+---
+
+## 💻 ローカルでの動作確認方法
+
+ローカル環境でAnonBoardをテストする場合は以下を実行してください。
 
 ```bash
-cd anon_board/
-dfx help
-dfx canister --help
-```
-
-## Running the project locally
-
-If you want to test your project locally, you can use the following commands:
-
-```bash
-# Starts the replica, running in the background
 dfx start --background
-
-# Deploys your canisters to the replica and generates your candid interface
 dfx deploy
 ```
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+デプロイ後は下記URLでアクセスできます。
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+- フロントエンド：http://localhost:5173
 
-```bash
-npm run generate
-```
+---
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
-
-If you are making frontend changes, you can start a development server with
-
-```bash
-npm start
-```
-
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
-
-### Note on frontend environment variables
-
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
-
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
-# anon_board
-# anon_board
-# anon_board
+以上、ご不明点やご質問はお気軽にお問い合わせください。
