@@ -1,26 +1,27 @@
 <script>
-  import "../index.scss";
-  import { backend } from "$lib/canisters";
+  let content = "";
+  let messages = [];
 
-  let greeting = "";
+  async function fetchMessages() {
+    // Canistersから取得するコード（後ほど）
+  }
 
-  function onSubmit(event) {
-    const name = event.target.name.value;
-    backend.greet(name).then((response) => {
-      greeting = response;
-    });
-    return false;
+  async function postMessage() {
+    // Canistersへ投稿するコード（後ほど）
   }
 </script>
 
-<main>
-  <img src="/logo2.svg" alt="DFINITY logo" />
-  <br />
-  <br />
-  <form action="#" on:submit|preventDefault={onSubmit}>
-    <label for="name">Enter your name: &nbsp;</label>
-    <input id="name" alt="Name" type="text" />
-    <button type="submit">Click Me!</button>
-  </form>
-  <section id="greeting">{greeting}</section>
-</main>
+<div>
+  <h1>AnonBoard（匿名掲示板）</h1>
+
+  <!-- 投稿フォーム -->
+  <textarea bind:value={content}></textarea>
+  <button on:click={postMessage}>投稿する</button>
+
+  <!-- 投稿一覧 -->
+  <ul>
+    {#each messages as message}
+      <li>{message.content}（投稿日時: {new Date(message.timestamp / 1_000_000).toLocaleString()}）</li>
+    {/each}
+  </ul>
+</div>
