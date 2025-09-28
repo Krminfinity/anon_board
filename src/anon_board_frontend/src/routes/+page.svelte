@@ -40,7 +40,7 @@
 
 <div class="container">
   <header>
-    <h1>📢 AnonBoard（匿名掲示板）</h1>
+    <h1>AnonBoard（匿名掲示板）</h1>
   </header>
 
   <section class="form-section">
@@ -50,7 +50,7 @@
 
   <section class="sort-section">
     <button on:click={toggleSortOrder}>
-      {sortOrder === 'newest' ? '🔼 古い順に表示' : '🔽 新しい順に表示'}
+      {sortOrder === 'newest' ? '古い順に表示' : '新しい順に表示'}
     </button>
   </section>
 
