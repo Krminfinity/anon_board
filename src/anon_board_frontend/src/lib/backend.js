@@ -13,8 +13,9 @@ const idlFactory = ({ IDL }) => {
   });
 };
 
-// // CanisterのIDを設定（ローカル用）
-// const canisterId = process.env.CANISTER_ID_ANON_BOARD_BACKEND;
+// .env (dfx が生成) から注入される環境変数を参照 (vite-plugin-environment)
+// ローカル: CANISTER_ID_ANON_BOARD_BACKEND が存在
+// 本番: フォールバックとして mainnet の固定 ID
 
 // ICPのエージェントを作成
 const agent = new HttpAgent({
@@ -26,8 +27,14 @@ const agent = new HttpAgent({
 //   agent.fetchRootKey();
 // }
 
-// 本番環境のCanister IDを直接記載
-const canisterId = 'zntov-gqaaa-aaaaf-qanvq-cai';
+const canisterId = (
+  // Vite の環境 (import.meta.env) 優先
+  (import.meta?.env && import.meta.env.CANISTER_ID_ANON_BOARD_BACKEND) ||
+  // Node/SSR 側 (念のため)
+  process.env?.CANISTER_ID_ANON_BOARD_BACKEND ||
+  // フォールバック: IC 本番デプロイ済み ID
+  'zntov-gqaaa-aaaaf-qanvq-cai'
+);
 
 // Actorを作成（Canistersとの通信を行う）
 const backend = Actor.createActor(idlFactory, {
