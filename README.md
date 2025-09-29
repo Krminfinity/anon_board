@@ -69,6 +69,63 @@
 ## 開発証拠（2025年1月以降）
 - GitHubコミット履歴：https://github.com/Krminfinity/anon_board
 - 最新コミット日：2025年3月24日
+---
+
+## ローカル開発 & デプロイ手順
+
+### 前提
+dfx (Internet Computer SDK) が利用可能であること。Windows の場合は WSL2(Ubuntu) 推奨。
+
+### 初回セットアップ
+```bash
+git clone <REPO_URL> anon_board
+cd anon_board
+npm install
+dfx start --background
+npm run deploy:local
+```
+
+### 変更を反映 (ローカル上書き)
+```bash
+npm run deploy:local:backend   # Motoko だけ変更した場合
+```
+
+### 本番 (IC) へアップグレード / 再デプロイ
+```bash
+# バックエンドのみ (state維持 / stable 互換必須)
+npm run deploy:ic:backend
+
+# フロントエンド資産更新
+npm run deploy:ic:frontend
+
+# 両方まとめて
+npm run deploy:ic:all
+```
+
+### Canister ID の解決ロジック
+`src/anon_board_frontend/src/lib/backend.js` で以下優先順:
+1. `import.meta.env.CANISTER_ID_ANON_BOARD_BACKEND`
+2. `process.env.CANISTER_ID_ANON_BOARD_BACKEND`
+3. ハードコードされた本番 ID フォールバック (`zntov-gqaaa-...`)
+
+### アップグレード互換性について
+`main.mo` の `stable var messages : [Message]` はそのまま維持されるため、型を壊さなければ state が保持されます。フィールド追加時は preupgrade/postupgrade で古いデータのマイグレーションを実装してください。
+
+### よくあるトラブル
+| 症状 | 対処 |
+|------|------|
+| `dfx: command not found` | PATH 再読込 or WSL 内でインストール |
+| Upgrade 失敗 (権限) | `dfx identity list` → 以前の identity を `dfx identity use` |
+| Agent root key error (ローカル) | 開発時 `agent.fetchRootKey()` を一時的に有効化 |
+| 型変更で復旧不可 | 旧型保持し変換関数で新配列へ移し替え |
+
+---
+
+## 今後の改善候補 (技術)
+- ページング API (大量メッセージ対策)
+- スパム防止 (簡易 PoW / レート制限)
+- preupgrade/postupgrade のテンプレート導入
+- CI での `dfx canister create --no-wallet` + candid チェック
 
 
 
