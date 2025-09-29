@@ -15,7 +15,10 @@
     "deploy:ic": "dfx deploy --network ic",
     "deploy:ic:backend": "dfx deploy --network ic anon_board_backend --mode upgrade",
     "deploy:ic:frontend": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic anon_board_frontend --mode upgrade",
-    "deploy:ic:all": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic"
+    "deploy:ic:all": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic",
+    "deploy:ic:v2:backend": "dfx deploy --network ic anon_board_backend_v2",
+    "deploy:ic:v2:frontend": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic anon_board_frontend_v2",
+    "deploy:ic:v2:all": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic anon_board_backend_v2 anon_board_frontend_v2"
   },
   "type": "module",
   "workspaces": [

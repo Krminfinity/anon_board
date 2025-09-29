@@ -7,9 +7,26 @@
       "main": "src/anon_board_backend/main.mo",
       "type": "motoko"
     },
+    "anon_board_backend_v2": {
+      "declarations": {
+        "node_compatibility": true
+      },
+      "main": "src/anon_board_backend/main.mo",
+      "type": "motoko"
+    },
     "anon_board_frontend": {
       "dependencies": [
         "anon_board_backend"
+      ],
+      "source": [
+        "src/anon_board_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "anon_board_frontend"
+    },
+    "anon_board_frontend_v2": {
+      "dependencies": [
+        "anon_board_backend_v2"
       ],
       "source": [
         "src/anon_board_frontend/dist"
