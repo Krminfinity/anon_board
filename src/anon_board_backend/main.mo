@@ -1,7 +1,9 @@
 import Time "mo:base/Time";
 import Array "mo:base/Array";
 
-persistent actor AnonBoard {
+// NOTE: 'persistent actor' 構文は新しい Motoko バージョンで導入された機能です。
+// 互換性を高めるため、従来の actor + stable 変数を使用します。
+actor AnonBoard {
 
   public type Message = {
     id: Nat;
@@ -9,7 +11,8 @@ persistent actor AnonBoard {
     timestamp: Int;
   };
 
-  private var messages: [Message] = [];
+  // 永続化したいので stable を利用
+  stable var messages : [Message] = [];
 
   // 投稿を格納する（匿名投稿機能）
   public func addMessage(content: Text): async Message {
