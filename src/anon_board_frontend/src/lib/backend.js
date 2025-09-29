@@ -1,5 +1,17 @@
 import { Actor, HttpAgent } from '@dfinity/agent';
-import { idlFactory } from '../../../declarations/anon_board_backend';
+
+// IDL Factory for the backend canister
+const idlFactory = ({ IDL }) => {
+  const Message = IDL.Record({
+    'id' : IDL.Nat,
+    'content' : IDL.Text,
+    'timestamp' : IDL.Int,
+  });
+  return IDL.Service({
+    'addMessage' : IDL.Func([IDL.Text], [Message], []),
+    'getAllMessages' : IDL.Func([], [IDL.Vec(Message)], ['query']),
+  });
+};
 
 // // CanisterのIDを設定（ローカル用）
 // const canisterId = process.env.CANISTER_ID_ANON_BOARD_BACKEND;

@@ -1,7 +1,7 @@
 import Time "mo:base/Time";
 import Array "mo:base/Array";
 
-actor AnonBoard {
+persistent actor AnonBoard {
 
   public type Message = {
     id: Nat;
@@ -9,7 +9,7 @@ actor AnonBoard {
     timestamp: Int;
   };
 
-  private stable var messages: [Message] = [];
+  private var messages: [Message] = [];
 
   // 投稿を格納する（匿名投稿機能）
   public func addMessage(content: Text): async Message {
