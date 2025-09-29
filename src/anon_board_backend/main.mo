@@ -2,8 +2,8 @@ import Time "mo:base/Time";
 import Array "mo:base/Array";
 
 // NOTE: 'persistent actor' 構文は新しい Motoko バージョンで導入された機能です。
-// 互換性を高めるため、従来の actor + stable 変数を使用します。
-actor AnonBoard {
+// 新しいバージョンでは persistent actor を使用する必要があります。
+persistent actor AnonBoard {
 
   public type Message = {
     id: Nat;
