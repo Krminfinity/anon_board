@@ -1,14 +1,5 @@
 # AnonBoard（匿名掲示板）
 
-## デモURL（本番環境）
-- フロントエンド： [https://zyu7y-hyaaa-aaaaf-qanwa-cai.icp0.io](https://zyu7y-hyaaa-aaaaf-qanwa-cai.icp0.io)
-
-## 本番Canister ID
-- フロントエンド：`zyu7y-hyaaa-aaaaf-qanwa-cai`
-- バックエンド　：`zntov-gqaaa-aaaaf-qanvq-cai`
-
-
-
 ## サービスコンセプト
 **AnonBoard** は、Internet Computer Protocol（ICP）上に構築された、**匿名性・改ざん不可・完全分散型**の掲示板です。中央管理者不要で投稿を行えることにより、**検閲のない自由な言論空間**を実現します。
 
@@ -64,11 +55,6 @@
 - 投稿への返信 / スレッド構造
 - Internet Identity連携による「任意の本人性」追加
 
-
-
-## 開発証拠（2025年1月以降）
-- GitHubコミット履歴：https://github.com/Krminfinity/anon_board
-- 最新コミット日：2025年3月24日
 ---
 
 ## ローカル開発 & デプロイ手順
