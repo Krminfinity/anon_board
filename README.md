@@ -1,6 +1,6 @@
 # AnonBoard（匿名掲示板）
 
-## 🌐 本番サービス
+## 本番サービス
 **ライブURL:** https://u363a-rqaaa-aaaaf-qcbka-cai.icp0.io/
 
 ## サービスコンセプト
