@@ -9,7 +9,13 @@
     "prebuild": "npm run prebuild --workspaces --if-present",
     "pretest": "npm run prebuild --workspaces --if-present",
     "start": "npm start --workspaces --if-present",
-    "test": "npm test --workspaces --if-present"
+    "test": "npm test --workspaces --if-present",
+    "deploy:local": "dfx deploy",
+    "deploy:local:backend": "dfx deploy anon_board_backend --mode upgrade",
+    "deploy:ic": "dfx deploy --network ic",
+    "deploy:ic:backend": "dfx deploy --network ic anon_board_backend --mode upgrade",
+    "deploy:ic:frontend": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic anon_board_frontend --mode upgrade",
+    "deploy:ic:all": "npm run build --workspace=anon_board_frontend && dfx deploy --network ic"
   },
   "type": "module",
   "workspaces": [
