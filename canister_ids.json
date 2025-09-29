@@ -2,7 +2,13 @@
   "anon_board_backend": {
     "ic": "zntov-gqaaa-aaaaf-qanvq-cai"
   },
+  "anon_board_backend_v2": {
+    "ic": "uozkn-qyaaa-aaaaf-qcbjq-cai"
+  },
   "anon_board_frontend": {
     "ic": "zyu7y-hyaaa-aaaaf-qanwa-cai"
+  },
+  "anon_board_frontend_v2": {
+    "ic": "u363a-rqaaa-aaaaf-qcbka-cai"
   }
 }

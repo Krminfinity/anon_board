@@ -1,5 +1,8 @@
 # AnonBoard（匿名掲示板）
 
+## 🌐 本番サービス
+**ライブURL:** https://u363a-rqaaa-aaaaf-qcbka-cai.icp0.io/
+
 ## サービスコンセプト
 **AnonBoard** は、Internet Computer Protocol（ICP）上に構築された、**匿名性・改ざん不可・完全分散型**の掲示板です。中央管理者不要で投稿を行えることにより、**検閲のない自由な言論空間**を実現します。
 
@@ -87,31 +90,6 @@ npm run deploy:ic:frontend
 # 両方まとめて
 npm run deploy:ic:all
 ```
-
-### Canister ID の解決ロジック
-`src/anon_board_frontend/src/lib/backend.js` で以下優先順:
-1. `import.meta.env.CANISTER_ID_ANON_BOARD_BACKEND`
-2. `process.env.CANISTER_ID_ANON_BOARD_BACKEND`
-3. ハードコードされた本番 ID フォールバック (`zntov-gqaaa-...`)
-
-### アップグレード互換性について
-`main.mo` の `stable var messages : [Message]` はそのまま維持されるため、型を壊さなければ state が保持されます。フィールド追加時は preupgrade/postupgrade で古いデータのマイグレーションを実装してください。
-
-### よくあるトラブル
-| 症状 | 対処 |
-|------|------|
-| `dfx: command not found` | PATH 再読込 or WSL 内でインストール |
-| Upgrade 失敗 (権限) | `dfx identity list` → 以前の identity を `dfx identity use` |
-| Agent root key error (ローカル) | 開発時 `agent.fetchRootKey()` を一時的に有効化 |
-| 型変更で復旧不可 | 旧型保持し変換関数で新配列へ移し替え |
-
----
-
-## 今後の改善候補 (技術)
-- ページング API (大量メッセージ対策)
-- スパム防止 (簡易 PoW / レート制限)
-- preupgrade/postupgrade のテンプレート導入
-- CI での `dfx canister create --no-wallet` + candid チェック
 
 
 
